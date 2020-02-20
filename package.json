@@ -1,0 +1,25 @@
+{
+    "name": "blog-mvc",
+    "description": "Project realized for a blog in mvc php",
+    "keywords": [
+      "pedagogic",
+      "template",
+      "web",
+      "application",
+      "php",
+      "mvc"
+    ],
+    "license": "MIT",
+    "main": "index.php",
+    "homepage": "https://emichel.dev",
+    "repository": "github:emicheldev/blog-mvc",
+    "bugs": "https://github.com/emicheldev/blog-mvc/issues",
+    "dependencies": {
+      "@fortawesome/fontawesome-free": "^5.12.1"
+    },
+    "author": {
+      "name": "E. Michel Mve Essone",
+      "email": "contact@emichel.dev",
+      "url": "https://emichel.dev"
+    }
+  }
