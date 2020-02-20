@@ -14,5 +14,17 @@ use Twig\Error\SyntaxError;
  */
 class HomeController extends MainController 
 {
-    
+    /**
+     * Renders the View Home
+     * @return string
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    public function defaultMethod()
+    {
+        $allUsers = ModelFactory::getModel('User')->listData();
+
+        return $this->twig->render('home.twig', ['allUsers' => $allUsers]);
+    }
 }
