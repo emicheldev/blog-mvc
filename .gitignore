@@ -1,5 +1,6 @@
 # Jetbrains
 .idea/
+.vscode
 
 # DB (uncomment when you start using the template)
 # config/db.php

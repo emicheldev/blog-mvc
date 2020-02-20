@@ -28,7 +28,8 @@
     },
     "require": {
       "php": "7.2",
-      "twig/twig": "^2.12.5"
+      "twig/twig": "^2.12.5",
+        "vlucas/phpdotenv": "^4.1"
     },
     "config": {
       "platform": {
@@ -42,4 +43,3 @@
       "source": "https://github.com/emicheldev/blog-mvc"
     }
   }
-  

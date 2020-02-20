@@ -1,4 +1,3 @@
--- WARNING : Don't forget to add the file name inside the .gitignore file when you add sensible datas here (like passwords)
 
 -- For Development only ! (Depends on your online server architecture)
 DROP DATABASE IF EXISTS `blog_mvc`;
