@@ -1,0 +1,45 @@
+{
+    "name": "emicheldev/blog-mvc",
+    "version": "0.1.0",
+    "type": "project",
+    "description": "Project realized for a blog in mvc php",
+    "keywords": [
+      "pedagogic",
+      "template",
+      "web",
+      "application",
+      "php",
+      "mvc"
+    ],
+    "homepage": "https://emichel.dev",
+    "license": "MIT",
+    "authors": [
+      {
+        "name": "Philippe Beck",
+        "email": "contact@emichel.dev",
+        "homepage": "https://emichel.dev",
+        "role": "Lead Developer"
+      }
+    ],
+    "autoload": {
+      "psr-4": {
+        "App\\": "src/"
+      }
+    },
+    "require": {
+      "php": "7.2",
+      "twig/twig": "^2.12.5"
+    },
+    "config": {
+      "platform": {
+        "php": "7.2"
+      }
+    },
+    "support": {
+      "email": "contact@emichel.dev",
+      "issues": "https://github.com/emicheldev/blog-mvc/issues",
+      "wiki": "https://github.com/emicheldev/blog-mvc/wiki",
+      "source": "https://github.com/emicheldev/blog-mvc"
+    }
+  }
+  
