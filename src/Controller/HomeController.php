@@ -12,7 +12,7 @@ use Twig\Error\SyntaxError;
  * Manages the Homepage
  * @package App\Controller
  */
-class HomeController extends MainController
+class HomeController extends MainController 
 {
-
+    
 }
