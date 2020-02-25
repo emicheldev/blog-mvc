@@ -7,13 +7,13 @@
     <meta name="viewport"               content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible"  content="IE=edge">
 
-    <title>{% block title %}{{ block('subtitle') }} - PHP MVC{% endblock %}</title>
+    <title>{% block title %}{{ block('subtitle') }} - BLOG MVC{% endblock %}</title>
 
     <link rel="canonical" href="{% block canonical %}https://php-mvc.philippebeck.net{% endblock %}">
     <link rel="icon" type="image/x-icon" href="img/favicon.ico">
 
     <meta name="description"                content="{{ block('description') }}">
-    <meta name="author"                     content="Philippe Beck">
+    <meta name="author"                     content="e. Michel">
     <meta name="copyright"                  content="MIT">
 
     <meta property="og:type"        content="website">
@@ -27,21 +27,15 @@
     <meta name="twitter:site"           content="{{ block('canonical') }}">
     <meta name="twitter:description"    content="{{ block('description') }}">
     <meta name="twitter:image"          content="{{ block('image') }}">
-    <meta name="twitter:creator"        content="@philippepjbeck">
+    <meta name="twitter:creator"        content="@emichel_dev">
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Text+Me+One%7cCinzel:400,700,900%7cShare+Tech+Mono">
-    <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css">
 
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/app.css">
 </head>
 
-<body>
+<body class="bg-gray-200 sm:mx-56 text-gray-800 mx-4 ">
 
     {{ include('layout/navbar.twig') }}
-
-    <header>
-        <h1>{{ block('title') }}</h1>
-    </header>
 
     {% block main %}{% endblock %}
 

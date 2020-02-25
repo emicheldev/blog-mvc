@@ -12,7 +12,7 @@ use Twig\Error\SyntaxError;
  * Manages the Homepage
  * @package App\Controller
  */
-class HomeController extends MainController 
+class HomeController extends Controller 
 {
     /**
      * Renders the View Home
@@ -21,10 +21,10 @@ class HomeController extends MainController
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function defaultMethod()
+    public function home()
     {
         $allUsers = ModelFactory::getModel('User')->listData();
 
-        return $this->twig->render('home.twig', ['allUsers' => $allUsers]);
+        return $this->viewPage($this->twig->render('/pages/home.twig', ['allUsers' => $allUsers]));
     }
 }
