@@ -6,11 +6,11 @@ use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 
 /**
- * Class MainController
- * Manages the Main Features
+ * Class Controller
+ * Manages the Controller Features
  * @package App\Controller
  */
-abstract class MainController
+abstract class Controller
 {
     /**
      * @var Environment|null
@@ -18,7 +18,7 @@ abstract class MainController
     protected $twig = null;
 
     /**
-     * MainController constructor
+     * Controller constructor
      * Creates the Template Engine & adds its Extensions
      */
     public function __construct()
@@ -26,6 +26,17 @@ abstract class MainController
         $this->twig = new Environment(new FilesystemLoader('../src/View'), array('cache' => false));
     }
 
+    /**
+     * viewPage
+     *
+     * @param  mixed $twigpage
+     *
+     * @return void
+     */
+    public function viewPage($twigpage)
+    {
+            echo $twigpage;
+    }
     /**
      * Redirects to another URL
      * @param string $page

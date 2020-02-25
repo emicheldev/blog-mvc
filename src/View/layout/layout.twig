@@ -29,19 +29,13 @@
     <meta name="twitter:image"          content="{{ block('image') }}">
     <meta name="twitter:creator"        content="@emichel_dev">
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Text+Me+One%7cCinzel:400,700,900%7cShare+Tech+Mono">
-    <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css">
 
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/app.css">
 </head>
 
-<body>
+<body class="bg-gray-200 sm:mx-56 text-gray-800 mx-4 ">
 
     {{ include('layout/navbar.twig') }}
-
-    <header>
-        <h1>{{ block('title') }}</h1>
-    </header>
 
     {% block main %}{% endblock %}
 
