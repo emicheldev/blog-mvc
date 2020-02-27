@@ -21,10 +21,10 @@ class HomeController extends Controller
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function home()
+    public function defaultMethod()
     {
-        $allUsers = ModelFactory::getModel('User')->listData();
+        $allArticles = ModelFactory::getModel('Article')->listData();
 
-        return $this->viewPage($this->twig->render('/pages/home.twig', ['allUsers' => $allUsers]));
+        return $this->twig->render('/pages/home.twig', ['allArticles' => $allArticles]);
     }
 }
