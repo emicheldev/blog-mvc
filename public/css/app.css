@@ -561,7 +561,7 @@ pre,
 code,
 kbd,
 samp {
-  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
 /**
@@ -3695,8 +3695,16 @@ video {
   clear: both;
 }
 
-.font-body{
-  font-family: Nunito, sans-serif;
+.font-sans{
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+.font-serif{
+  font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+.font-mono{
+  font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
 .font-hairline{
@@ -11078,12 +11086,56 @@ video {
   color: #702459;
 }
 
-.text-7xl{
+.text-blog{
   font-size: 15rem;
 }
 
 .text-year{
   font-size: 8rem;;
+}
+
+.text-xs{
+  font-size: .75rem;
+}
+
+.text-tiny{
+  font-size: .875rem;
+}
+
+.text-base{
+  font-size: 1rem;
+}
+
+.text-lg{
+  font-size: 1.125rem;
+}
+
+.text-xl{
+  font-size: 1.25rem;
+}
+
+.text-2xl{
+  font-size: 1.5rem;
+}
+
+.text-3xl{
+  font-size: 1.875rem;
+}
+
+.text-4xl{
+  font-size: 2.25rem;
+}
+
+.text-5xl{
+  font-size: 3rem;
+}
+
+.text-6xl{
+  font-size: 4rem;
+}
+
+.text-7xl{
+  font-size: 5rem;
 }
 
 .italic{
@@ -22948,8 +23000,16 @@ readers do not read off random characters that represent icons */
     clear: both;
   }
 
-  .sm\:font-body{
-    font-family: Nunito, sans-serif;
+  .sm\:font-sans{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  }
+
+  .sm\:font-serif{
+    font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+  }
+
+  .sm\:font-mono{
+    font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   }
 
   .sm\:font-hairline{
@@ -30331,12 +30391,56 @@ readers do not read off random characters that represent icons */
     color: #702459;
   }
 
-  .sm\:text-7xl{
+  .sm\:text-blog{
     font-size: 15rem;
   }
 
   .sm\:text-year{
     font-size: 8rem;;
+  }
+
+  .sm\:text-xs{
+    font-size: .75rem;
+  }
+
+  .sm\:text-tiny{
+    font-size: .875rem;
+  }
+
+  .sm\:text-base{
+    font-size: 1rem;
+  }
+
+  .sm\:text-lg{
+    font-size: 1.125rem;
+  }
+
+  .sm\:text-xl{
+    font-size: 1.25rem;
+  }
+
+  .sm\:text-2xl{
+    font-size: 1.5rem;
+  }
+
+  .sm\:text-3xl{
+    font-size: 1.875rem;
+  }
+
+  .sm\:text-4xl{
+    font-size: 2.25rem;
+  }
+
+  .sm\:text-5xl{
+    font-size: 3rem;
+  }
+
+  .sm\:text-6xl{
+    font-size: 4rem;
+  }
+
+  .sm\:text-7xl{
+    font-size: 5rem;
   }
 
   .sm\:italic{
@@ -36252,8 +36356,16 @@ readers do not read off random characters that represent icons */
     clear: both;
   }
 
-  .md\:font-body{
-    font-family: Nunito, sans-serif;
+  .md\:font-sans{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  }
+
+  .md\:font-serif{
+    font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+  }
+
+  .md\:font-mono{
+    font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   }
 
   .md\:font-hairline{
@@ -43635,12 +43747,56 @@ readers do not read off random characters that represent icons */
     color: #702459;
   }
 
-  .md\:text-7xl{
+  .md\:text-blog{
     font-size: 15rem;
   }
 
   .md\:text-year{
     font-size: 8rem;;
+  }
+
+  .md\:text-xs{
+    font-size: .75rem;
+  }
+
+  .md\:text-tiny{
+    font-size: .875rem;
+  }
+
+  .md\:text-base{
+    font-size: 1rem;
+  }
+
+  .md\:text-lg{
+    font-size: 1.125rem;
+  }
+
+  .md\:text-xl{
+    font-size: 1.25rem;
+  }
+
+  .md\:text-2xl{
+    font-size: 1.5rem;
+  }
+
+  .md\:text-3xl{
+    font-size: 1.875rem;
+  }
+
+  .md\:text-4xl{
+    font-size: 2.25rem;
+  }
+
+  .md\:text-5xl{
+    font-size: 3rem;
+  }
+
+  .md\:text-6xl{
+    font-size: 4rem;
+  }
+
+  .md\:text-7xl{
+    font-size: 5rem;
   }
 
   .md\:italic{
@@ -49556,8 +49712,16 @@ readers do not read off random characters that represent icons */
     clear: both;
   }
 
-  .lg\:font-body{
-    font-family: Nunito, sans-serif;
+  .lg\:font-sans{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  }
+
+  .lg\:font-serif{
+    font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+  }
+
+  .lg\:font-mono{
+    font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   }
 
   .lg\:font-hairline{
@@ -56939,12 +57103,56 @@ readers do not read off random characters that represent icons */
     color: #702459;
   }
 
-  .lg\:text-7xl{
+  .lg\:text-blog{
     font-size: 15rem;
   }
 
   .lg\:text-year{
     font-size: 8rem;;
+  }
+
+  .lg\:text-xs{
+    font-size: .75rem;
+  }
+
+  .lg\:text-tiny{
+    font-size: .875rem;
+  }
+
+  .lg\:text-base{
+    font-size: 1rem;
+  }
+
+  .lg\:text-lg{
+    font-size: 1.125rem;
+  }
+
+  .lg\:text-xl{
+    font-size: 1.25rem;
+  }
+
+  .lg\:text-2xl{
+    font-size: 1.5rem;
+  }
+
+  .lg\:text-3xl{
+    font-size: 1.875rem;
+  }
+
+  .lg\:text-4xl{
+    font-size: 2.25rem;
+  }
+
+  .lg\:text-5xl{
+    font-size: 3rem;
+  }
+
+  .lg\:text-6xl{
+    font-size: 4rem;
+  }
+
+  .lg\:text-7xl{
+    font-size: 5rem;
   }
 
   .lg\:italic{
@@ -62860,8 +63068,16 @@ readers do not read off random characters that represent icons */
     clear: both;
   }
 
-  .xl\:font-body{
-    font-family: Nunito, sans-serif;
+  .xl\:font-sans{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  }
+
+  .xl\:font-serif{
+    font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+  }
+
+  .xl\:font-mono{
+    font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   }
 
   .xl\:font-hairline{
@@ -70243,12 +70459,56 @@ readers do not read off random characters that represent icons */
     color: #702459;
   }
 
-  .xl\:text-7xl{
+  .xl\:text-blog{
     font-size: 15rem;
   }
 
   .xl\:text-year{
     font-size: 8rem;;
+  }
+
+  .xl\:text-xs{
+    font-size: .75rem;
+  }
+
+  .xl\:text-tiny{
+    font-size: .875rem;
+  }
+
+  .xl\:text-base{
+    font-size: 1rem;
+  }
+
+  .xl\:text-lg{
+    font-size: 1.125rem;
+  }
+
+  .xl\:text-xl{
+    font-size: 1.25rem;
+  }
+
+  .xl\:text-2xl{
+    font-size: 1.5rem;
+  }
+
+  .xl\:text-3xl{
+    font-size: 1.875rem;
+  }
+
+  .xl\:text-4xl{
+    font-size: 2.25rem;
+  }
+
+  .xl\:text-5xl{
+    font-size: 3rem;
+  }
+
+  .xl\:text-6xl{
+    font-size: 4rem;
+  }
+
+  .xl\:text-7xl{
+    font-size: 5rem;
   }
 
   .xl\:italic{
