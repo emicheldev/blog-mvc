@@ -28,29 +28,44 @@ class ArticleController extends Controller
     }
 
     /**
+     * indexMethod
+     *
+     * @return void
+     */
+    public function indexMethod()
+    {
+
+
+        $allArticles = ModelFactory::getModel('Article')->listData();
+
+        return $this->render('admin/blog/index.twig', ['allArticles' => $allArticles]);
+
+     
+    }
+
+    /**
      * @return string
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function create()
+    public function createMethod()
     {
-        if (!empty($this->post->getPostArray())) {
+        if (!empty($this->post)) {
 
-            $data['image'] = $this->files->uploadFile('img/blog');
+            $data['title']        = $this->post['title'];
+            $data['content']      = $this->post['content'];
+            $data['createdAt']    = $this->post['date'];
+            $data['updatedAt']    = $this->post['date'];
+            $data['user_id']      = 1;
 
-            $data['title']        = $this->post->getPostVar('title');
-            $data['link']         = $this->post->getPostVar('link');
-            $data['content']      = $this->post->getPostVar('content');
-            $data['created_date'] = $this->post->getPostVar('date');
-            $data['updated_date'] = $this->post->getPostVar('date');
 
             ModelFactory::getModel('Article')->createData($data);
             $this->cookie->createAlert('Nouvel article créé avec succès !');
 
-            $this->redirect('admin');
+            $this->redirect('article!index');
         }
-        return $this->render('admin/blog/createArticle.twig');
+        return $this->render('admin/blog/create.twig');
     }
 
     /**
@@ -63,9 +78,9 @@ class ArticleController extends Controller
     {
         //$dataId = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 
-        $article    = ModelFactory::getModel('Article')->readData($this->getPostVar('id'));
+        $article    = ModelFactory::getModel('Article')->readData($this->get['id']);
      
-        $comments   = ModelFactory::getModel('Comment')->listData($this->getPostVar('id'), 'article_id');
+        $comments   = ModelFactory::getModel('Comment')->listData($this->get['id'], 'article_id');
 
         if(!empty($comments)) {
 
@@ -89,34 +104,29 @@ class ArticleController extends Controller
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function update()
+    public function updateMethod()
     {
-        if (!empty($this->post->getPostArray())) {
+        
+        if (!empty($this->post)) {
 
-            if (!empty($this->files->getFileVar('name'))) {
-                $data['image'] = $this->files->uploadFile('img/blog');
-            }
+            $data['title']        = $this->post['title'];
+            $data['content']      = $this->post['content'];
 
-            $data['title']        = $this->post->getPostVar('title');
-            $data['link']         = $this->post->getPostVar('link');
-            $data['content']      = $this->post->getPostVar('content');
-            $data['updated_date'] = $this->post->getPostVar('date');
-
-            ModelFactory::getModel('Article')->updateData($this->get->getGetVar('id'), $data);
-            $this->cookie->createAlert('Modification réussie de l\'article sélectionné !');
+            ModelFactory::getModel('Article')->updateData($this->get['id'], $data);
 
             $this->redirect('admin');
         }
-        $article = ModelFactory::getModel('Article')->readData($this->get->getGetVar('id'));
+        $this->cookie->createAlert('Article définitivement supprimé !');
+        $article = ModelFactory::getModel('Article')->readData($this->get['id']);
 
-        return $this->render('admin/blog/updateArticle.twig', ['article' => $article]);
+        return $this->render('admin/blog/update.twig', ['article' => $article]);
     }
 
-    public function delete()
+    public function deleteMethod()
     {
-        ModelFactory::getModel('Article')->deleteData($this->get->getGetVar('id'));
+        ModelFactory::getModel('Article')->deleteData($this->get['id']);
         $this->cookie->createAlert('Article définitivement supprimé !');
 
-        $this->redirect('admin');
+        $this->redirect('article!index');
     }
 }

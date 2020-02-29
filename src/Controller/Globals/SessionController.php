@@ -10,9 +10,9 @@ class SessionController
 {
     private $session;
 
-    public function __construct($session)
+    public function __construct()
     {
-        $this->session = $session;
+        $this->session = filter_var_array($_SESSION);
     }
 
     public function set($name, $value)
@@ -22,9 +22,7 @@ class SessionController
 
     public function get($name)
     {
-        if(isset($_SESSION[$name])) {
-            return $_SESSION[$name];
-        }
+            return $_SESSION[$name]["id"];
     }
 
     public function show($name,$value)

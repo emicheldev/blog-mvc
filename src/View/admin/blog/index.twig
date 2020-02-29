@@ -1,0 +1,51 @@
+{% extends 'admin/layout/layout.twig' %}
+
+{% block body %}
+
+    <div class="text-gray-900 bg-gray-200">
+    <div class="p-4 flex justify-between">
+        <h1 class="text-3xl">
+            Articles
+        </h1>
+        <a href="{{ url('article!create') }}" >
+            <h1 class="rounded-lg bg-orange-300 text-orange-600 p-2">
+            Nouvel article
+            </h1>
+        </a>
+    </div>
+    <div class="px-3 py-4 flex justify-center">
+        <table class="w-full text-md bg-white shadow-md rounded mb-4">
+            <tbody>
+                <tr class="border-b">
+                    <th class="text-left p-3 px-5">Title</th>
+                    <th class="text-left p-3 px-5">Content</th>
+                    <th class="text-left p-3 px-5">Date</th>
+                    <th></th>
+                </tr>
+            
+                {% for allArticle in allArticles %}
+                    
+                    {% if loop.index  is odd %}
+                         <tr class="border-b hover:bg-orange-100">
+                    {% else %}
+                    <tr class="border-b hover:bg-orange-100 bg-gray-100">
+                    {% endif %}
+
+                        <td class="p-3 px-5">{{allArticle.title}}</td>
+                        <td class="p-3 px-5">{{allArticle.content|slice(0,50) }} ...</td>
+                        <td class="p-3 px-5">
+                           {{ allArticle.createdAt|date('d M Y')}}
+                        </td>
+                        <td class="p-3 px-5 flex justify-end">
+                            <a href="{{ url('article!update', {'id': allArticle.id}) }}" class="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Modifier</a>
+                            <a href="{{ url('article!delete', {'id': allArticle.id}) }}" class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Supprimer</a>
+                        </td>
+                    </tr>
+
+                 {% endfor %}
+                
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
