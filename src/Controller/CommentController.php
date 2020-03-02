@@ -37,6 +37,6 @@ class CommentController extends Controller
         ModelFactory::getModel('Comment')->deleteData($this->get['id']);
         $this->cookie->createAlert('Commentaire définitivement supprimé !');
 
-        $this->redirect('admin');
+        $this->redirect('article!show', ['id' => $this->get['article_id']]);
     }
 }
