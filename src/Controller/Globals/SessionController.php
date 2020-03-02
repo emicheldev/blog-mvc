@@ -44,4 +44,70 @@ class SessionController
     {
         session_destroy();
     }
+
+    /**
+     * isLogged
+     *
+     * @return void
+     */
+    public function isLogged()
+    {
+        if (array_key_exists('user', $this->session)) {
+
+            if (!empty($this->user)) {
+
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * @return array|mixed
+     */
+    public function getSessionArray()
+    {
+        return $this->session;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUserArray()
+    {
+        if ($this->isLogged() === false) {
+            $this->user = [];
+        }
+
+        return $this->user;
+    }
+
+    /**
+     * @param $var
+     * @return mixed
+     */
+    public function getUserVar($var)
+    {
+        if ($this->isLogged() === false) {
+            $this->user[$var] = null;
+        }
+
+        return $this->user[$var];
+    }
+
+        /**
+     * @param int $id
+     * @param string $login
+     * @param string $email
+     */
+    public function createSession(int $id, string $login, string $email)
+    {
+        $_SESSION['user'] = [
+            'id'    => $id,
+            'login'  => $login,
+            'email' => $email
+        ];
+    }
+
+
 }

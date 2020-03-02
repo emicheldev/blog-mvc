@@ -14,8 +14,7 @@ use Twig\Error\SyntaxError;
  */
 class AdminController extends Controller 
 {
-    /**
-     * Renders the View Admin
+     /**
      * @return string
      * @throws LoaderError
      * @throws RuntimeError
@@ -23,7 +22,19 @@ class AdminController extends Controller
      */
     public function defaultMethod()
     {
-        return $this->render('admin/index.twig');
+            $allArticles = ModelFactory::getModel('Article')->listData();
+            $allComments = ModelFactory::getModel('Comment')->listData();
+            $allUsers    = ModelFactory::getModel('User')   ->listData();
+
+            return $this->render('admin/index.twig', [
+            'allArticles'       => $allArticles,
+            'allComments'       => $allComments,
+            'allUsers'          => $allUsers,
+            ]);
+
+        //$this->cookie->createAlert('Vous devez être connecté pour accéder à l\'administration');
+
+        //$this->redirect('user!login');
     }
 
 }
