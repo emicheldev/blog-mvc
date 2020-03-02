@@ -45,6 +45,7 @@ abstract class Controller extends SuperGlobalsController
         $this->twig->addGlobal('session', filter_var_array($_SESSION));
         $this->twig->addGlobal('file', filter_var_array($_FILES));
         $this->twig->addFilter( new TwigFilter('nl2br', 'nl2br', ['is_safe' => ['html']]));
+        
     }
 
     /**
@@ -84,34 +85,15 @@ abstract class Controller extends SuperGlobalsController
         return $this->twig->render($view, $params);
     }
 
+    
     /**
-     * Uploading file into a table
-     * @param string $var
+     * listData
+     *
+     * @param  mixed $value
+     * @param  mixed $key
+     *
+     * @return void
      */
-    public function uploadingFile(string $var)
-    {
-        if ($var === 'Creation') {
-            $this->post_content['name']                    = $this->post['name'];
-            $this->post_content['link']                    = $this->post['link'];
-            $this->post_content['year']                    = $this->post['year'];
-            $this->post_content['description']             = $this->post['description'];
-            $this->post_content['category']                = $this->post['category'];
-        } else {
-            $this->post_content['name']                    = $this->post['name'];
-            $this->post_content['email']                   = $this->post['email'];
-            $this->post_content['status']                  = $this->post['status'];
-        }
-
-        if (!empty($this->getFileVar('name'))) {
-            $this->post_content['file'] = $this->uploadFile('img/' . $var);
-        }
-
-
-        ModelFactory::getModel('' . $var . '')->updateData($this->get['id'], $this->post_content);
-
-        $this->redirect('user');
-    }
-
     public function listData(string $value = null, string $key = null)
     {
         if (isset($key)) {
@@ -121,4 +103,6 @@ abstract class Controller extends SuperGlobalsController
         $query = 'SELECT * FROM ' . $this->table;
         return $this->database->getAllData($query);
     }
+
+
 }
