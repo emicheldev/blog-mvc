@@ -47,7 +47,6 @@ class AuthController extends Controller
                
                 $this->redirect('admin');
             }
-            var_dump($this->post['password']);die();
 
             $this->cookie->createAlert('Authentification échouée !');
         }
