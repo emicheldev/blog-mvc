@@ -26,30 +26,36 @@
     <h2><i class="fa fa-comments-o" aria-hidden="true"></i> Les Commentaires</h2>
 
     <!-- Add Comment Form -->
-    <form id="comment" method="post" action="{{ url('comment!create', {'id': article.id}) }}" >
+    {% if (session.user|length != 0) %}
+        <form id="comment" method="post" action="{{ url('comment!create', {'id': article.id}) }}" >
 
-      <fieldset>
-        <legend><i class="fa fa-comment-o fa-lg" aria-hidden="true"></i> Ajouter un commentaire</legend>
+          <fieldset>
+            <legend class="mb-4"><i class="fa fa-comment-o fa-lg " aria-hidden="true"></i> Ajouter un commentaire</legend>
 
-        <ul>
-          <li>
-            <!-- Comment Content Field -->
-            <textarea class="w-full placeholder-gray-600 focus:placeholder-gray-500 p-5 rounded-sm" name="content" rows="3" placeholder="Insérez votre commentaire ici"></textarea>
-          </li>
+            <ul>
+              <li>
+                <!-- Comment Content Field -->
+                <textarea class="w-full placeholder-gray-600 focus:placeholder-gray-500 p-5 rounded-sm" name="content" rows="3" placeholder="Insérez votre commentaire ici" required></textarea>
+              </li>
 
-          <li class="btn-group mt-5">
-            <!-- Controls Buttons -->
-            <a class=" p-2 bg-blue-500 text-white rounded-lg m-2" href="{{ url('home') }}">Quitter</a>
-            <input class="p-2 text-blue-500 rounded-lg border-solid border-2 border-blue-500 bg-transparent m-2 cursor-pointer" type="reset" value="Réinitialiser">
-            <input class="p-2 text-blue-500 bg-transparent m-2 cursor-pointer" type="submit" value="Commenter">
-          </li>
-        </ul>
+              <li class="btn-group mt-5">
+                <!-- Controls Buttons -->
+                <a class=" p-2 bg-blue-500 text-white rounded-lg m-2" href="{{ url('home') }}">Quitter</a>
+                <input class="p-2 text-blue-500 rounded-lg border-solid border-2 border-blue-500 bg-transparent m-2 cursor-pointer" type="reset" value="Réinitialiser">
+                <input class="p-2 text-blue-500 bg-transparent m-2 cursor-pointer" type="submit" value="Commenter">
+              </li>
+            </ul>
 
-        <!-- Comment Date Field -->
-        <input name="date" type="hidden" value="{{ date()|date('Y-m-d H:i:s') }}">
+            <!-- Comment Date Field -->
+            <input name="date" type="hidden" value="{{ date()|date('Y-m-d H:i:s') }}">
 
-      </fieldset>
-    </form>
+          </fieldset>
+        </form>
+    {% else %}
+        <div class="bg-blue-300 p-5">
+          Connecter vous pour ecrire un commentaire
+        </div>
+    {% endif  %}
 
     <!-- Comments list -->
     <ul>
@@ -60,15 +66,22 @@
           
 
           <li class="comment rounded-lg hover:bg-blue-200 p-5 border-solid border-blue-200 border text-gray-600 mt-5">
-            <div class="comment-header flex flex-row">  
-              <div class="comment-avatar bg-blue-300 rounded-full h-10 w-10 flex justify-around items-center ">
-                  <i class="fas fa-user text-blue-700 "></i>
+            <div class="flex justify-between">
+              <div class="comment-header flex flex-row">  
+                  <div class="comment-avatar bg-blue-300 rounded-full h-10 w-10 flex justify-around items-center ">
+                      <i class="fas fa-user text-blue-700 "></i>
+                  </div>
+                  <div class="comment-author ml-2 -mt-1 "> 
+                    <h3 class="text-xl font-semibold"> {{ comment.user }}</h3>
+                    <p class="text-xs font-normal"> 
+                       {{ date(comment.created_date)|date('d M Y') }} 
+                    </p>
+                  </div>
               </div>
-              <div class="comment-author ml-2 -mt-1 "> 
-                <h3 class="text-xl font-semibold"> {{ comment.user }}</h3>
-                <p class="text-xs font-normal"> 
-                   {{ date(comment.created_date)|date('d M Y') }} 
-                </p>
+              <div class="icone-action">
+                <a href="{{ url('comment!update', {'id': comment.id}) }}" class="mr-3 text-sm" title="Modifier"><i class="fas fa-pen text-orange-500" ></i></a>
+
+                <a href="{{ url('comment!delete', {'id': comment.id,'article_id':article.id}) }}" class="text-sm " title="Supprimer"><i class="fas fa-trash text-red-500"></i></a>
               </div>
             </div>
             <div class="comment-content mt-3">

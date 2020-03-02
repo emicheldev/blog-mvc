@@ -15,27 +15,51 @@ class CommentController extends Controller
     {
         if ($this->session->islogged()) {
 
-            $data['article_id']   = $this->get->getGetVar('id');
-            $data['content']      = $this->post->getPostVar('content');
-            $data['created_date'] = $this->post->getPostVar('date');
-            $data['user_id']      = $this->session->userId();
+            $data['article_id']   = $this->get['id'];
+            $data['content']      = $this->post['content'];
+            $data['createdAt'] = $this->post['date'];
+            $data['user_id']      = $_SESSION['user']['id'];
+            $data['date_last_modif']      = $this->post['date'];
 
             ModelFactory::getModel('Comment')->createData($data);
 
             $this->cookie->createAlert('Nouveau commentaire créé avec succès !');
 
-            $this->redirect('article!read', ['id' => $this->get->getGetVar('id')]);
+            $this->redirect('article!show', ['id' => $this->get['id']]);
         }
         $this->cookie->createAlert('Vous devez être connecté pour ajouter un commentaire...');
 
         $this->redirect('user!login');
     }
 
+        /**
+     * @return string
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    public function updateMethod()
+    {
+        
+        if (!empty($this->post)) {
+
+            $data['content']      = $this->post['content'];
+
+            ModelFactory::getModel('Comment')->updateData($this->get['id'], $data);
+
+            $this->redirect('article');
+        }
+        $this->cookie->createAlert('Commentaire modifier !');
+        $comment = ModelFactory::getModel('Comment')->readData($this->get['id']);
+
+        return $this->render('blog/update.twig', ['comment' => $comment]);
+    }
+
     public function deleteMethod()
     {
-        ModelFactory::getModel('Comment')->deleteData($this->get->getGetVar('id'));
+        ModelFactory::getModel('Comment')->deleteData($this->get['id']);
         $this->cookie->createAlert('Commentaire définitivement supprimé !');
 
-        $this->redirect('admin');
+        $this->redirect('article!show', ['id' => $this->get['article_id']]);
     }
 }

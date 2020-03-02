@@ -54,7 +54,7 @@ class SessionController
     {
         if (array_key_exists('user', $this->session)) {
 
-            if (!empty($this->user)) {
+            if (!empty($this->session["user"])) {
 
                 return true;
             }
