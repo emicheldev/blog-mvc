@@ -25,10 +25,22 @@ class UserController extends Controller
     {
         return $this->twig->render('/registration/register.twig');
     }
-
-    public function loginMethod()
+    /**
+     * indexMethod
+     *
+     * @return void
+     */
+    public function indexMethod()
     {
-        return $this->twig->render('/registration/login.twig');
+    
+            $allUsers = ModelFactory::getModel('User')->listData();
+
+            return $this->render('admin/user/index.twig', ['allUsers' => $allUsers]);
+       // $this->cookie->createAlert('Vous devez être connecté pour accéder à l\'administration');
+
+        //$this->redirect('user!login');
+
+     
     }
 
         /**
@@ -39,23 +51,61 @@ class UserController extends Controller
      */
     public function registerMethod()
     {
-        if (!empty($this->post->getPostArray())) {
-            $user = ModelFactory::getModel('User')->readData($this->post->getPostVar('email'), 'email');
+        if (!empty($this->post)) {
+            $user = ModelFactory::getModel('User')->readData($this->post['email'], 'email');
 
             if (empty($user) == false) {
-                $this->session->set('user','Il existe déjà un compte utilisateur avec cette adresse e-mail');
+                $this->cookie->createAlert('Il existe déjà un compte utilisateur avec cette adresse e-mail');
             }
 
-            $data['password']   = password_hash($this->post->getPostVar('password'), PASSWORD_DEFAULT);
-            $data['login']   = $this->post->getPostVar('login');
-            $data['email']  = $this->post->getPostVar('email');
+            $data['password']   = password_hash($this->post['password'], PASSWORD_DEFAULT);
+            $data['login']   = $this->post['login'];
+            $data['email']  = $this->post['email'];
 
             ModelFactory::getModel('User')->createData($data);
-            $this->session->set('user','Nouvel utilisateur créé avec succès !');
-            
+            $this->cookie->createAlert('Nouvel utilisateur créé avec succès !');
 
-            $this->redirect('home');
+            $this->redirect('auth!login');
         }
-        return $this->render('/registration/register.twig');
+        return $this->render('admin/user/index.twig');
+
+    }
+
+    public function updateMethod()
+    {
+        if (!empty($this->post)) {
+
+            $data['password']   = password_hash($this->post['password'], PASSWORD_DEFAULT);
+            $data['login']   = $this->post['login'];
+            $data['email']  = $this->post['email'];
+
+            ModelFactory::getModel('User')->updateData($this->get['id'], $data);
+            $this->cookie->createAlert('Modification réussie de l\'utilisateur sélectionné !');
+
+            $this->redirect('user!index');
+        }
+        $user = ModelFactory::getModel('User')->readData($this->get['id']);
+
+        return $this->render('admin/user/update.twig', ['user' => $user]);
+    }
+
+    public function deleteMethod()
+    {
+        ModelFactory::getModel('User')->deleteData($this->get['id']);
+        $this->cookie->createAlert('Utilisateur définitivement supprimé !');
+
+        $this->redirect('user!index');
+    }
+
+    /**
+     * showMethod
+     *
+     * @return void
+     */
+    public function showMethod()
+    {
+        $user = ModelFactory::getModel('User')->readData($this->get['id']);
+
+        return $this->render('admin/user/show.twig', ['user' => $user]);
     }
 }

@@ -91,8 +91,10 @@ abstract class MainModel
     {
         $set = null;
 
+
         foreach ($data as $dataKey => $dataValue) {
             $set .= $dataKey . ' = "' . $dataValue . '", ';
+            
         }
 
         $set = substr_replace($set, '', -2);

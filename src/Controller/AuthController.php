@@ -31,19 +31,24 @@ class AuthController extends Controller
       
 
         if (!empty($this->post)) {
+            
 
             $user = ModelFactory::getModel('User')->readData($this->post['login'], 'login');
-            
+
             if (password_verify($this->post['password'], $user['password'])) {
 
-                $this->session->get(
-                    $user
+                $this->session->createSession(
+                    $user['id'],
+                    $user['login'],
+                    $user['email']
                 );
 
-                //$this->cookie->createAlert('Authentification réussie, bienvenue ' . $user['name'] .' !');
+                $this->cookie->createAlert('Authentification réussie, bienvenue ' . $user['login'] .' !');
                
                 $this->redirect('admin');
             }
+            var_dump($this->post['password']);die();
+
             $this->cookie->createAlert('Authentification échouée !');
         }
         return $this->render('auth/login.twig');

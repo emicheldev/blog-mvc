@@ -9,7 +9,7 @@
         </h1>
         <a href="{{ url('article!create') }}" >
             <h1 class="rounded-lg bg-orange-300 text-orange-600 p-2">
-            Nouvel article
+                Nouvel article
             </h1>
         </a>
     </div>
@@ -37,8 +37,9 @@
                            {{ allArticle.createdAt|date('d M Y')}}
                         </td>
                         <td class="p-3 px-5 flex justify-end">
-                            <a href="{{ url('article!update', {'id': allArticle.id}) }}" class="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Modifier</a>
-                            <a href="{{ url('article!delete', {'id': allArticle.id}) }}" class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Supprimer</a>
+                           <a href="{{ url('article!show', {'id': allArticle.id}) }}" class="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"><i class="fas fa-eye"></i></a>
+                            <a href="{{ url('article!update', {'id': allArticle.id}) }}" class="mr-3 text-sm bg-orange-500 hover:bg-orange-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"><i class="fas fa-pen "></i></a>
+                            <a href="{{ url('article!delete', {'id': allArticle.id}) }}" class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"><i class="fas fa-trash"></i></a>
                         </td>
                     </tr>
 
