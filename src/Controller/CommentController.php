@@ -32,6 +32,29 @@ class CommentController extends Controller
         $this->redirect('user!login');
     }
 
+        /**
+     * @return string
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    public function updateMethod()
+    {
+        
+        if (!empty($this->post)) {
+
+            $data['content']      = $this->post['content'];
+
+            ModelFactory::getModel('Comment')->updateData($this->get['id'], $data);
+
+            $this->redirect('article');
+        }
+        $this->cookie->createAlert('Commentaire modifier !');
+        $comment = ModelFactory::getModel('Comment')->readData($this->get['id']);
+
+        return $this->render('blog/update.twig', ['comment' => $comment]);
+    }
+
     public function deleteMethod()
     {
         ModelFactory::getModel('Comment')->deleteData($this->get['id']);
