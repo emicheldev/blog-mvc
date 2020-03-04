@@ -43,6 +43,13 @@ class UserController extends Controller
      
     }
 
+      public function logoutMethod()
+    {
+        $this->session->stop();
+
+        $this->redirect('home');
+    }
+
         /**
      * @return string
      * @throws LoaderError

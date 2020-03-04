@@ -25,6 +25,8 @@ class AdminController extends Controller
             $allArticles = ModelFactory::getModel('Article')->listData();
             $allComments = ModelFactory::getModel('Comment')->listData();
             $allUsers    = ModelFactory::getModel('User')   ->listData();
+            
+            $this->cookie->createAlert('Vous devez être connecté pour accéder à l\'administration');
 
             return $this->render('admin/index.twig', [
             'allArticles'       => $allArticles,
@@ -32,7 +34,6 @@ class AdminController extends Controller
             'allUsers'          => $allUsers,
             ]);
 
-        //$this->cookie->createAlert('Vous devez être connecté pour accéder à l\'administration');
 
         //$this->redirect('user!login');
     }
