@@ -1,8 +1,25 @@
-<nav>
+<nav class="flex justify-between">
     <div class="nav-menu flex py-5">
        <div class=" font-bold"><a href="index.php">Home</a></div>
         <div class="ml-5"><a href="{{ url('article') }}">Blog</a></div>
-        <div class="ml-5"><a href="/contact.php">Contact</a></div>
+        <div class="ml-5"><a href="{{ url('contact') }}">Contact</a></div>
     </div>
-    <div class="nav-icon"> <span class=""></span> </div>
+    <div >
+        {% if session.user.login is defined %}
+            <ul class="nav-icon  py-5">
+                <li class="flex-1 md:flex-none md:mr-3">
+                    <div class="relative inline-block">
+                        <button onclick="toggleDD('myDropdown')" class="drop-button  focus:outline-none capitalize "> <span class="pr-2"><i class="em em-robot_face"></i></span> Salut,  {{ session.user.login }} <svg class="h-3 fill-current inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg></button>
+                            <div id="myDropdown" class="dropdownlist absolute bg-white  right-0 mt-3 p-3 overflow-auto z-30 invisible">
+                                <a href="{{ url('user!show', {'id': session.user.id}) }}" class="p-2 hover:bg-gray-200  text-sm no-underline hover:no-underline block"><i class="fa fa-user fa-fw"></i> Profile</a>
+                                <a href="#" class="p-2 hover:bg-gray-200  text-sm no-underline hover:no-underline block"><i class="fa fa-cog fa-fw"></i> Settings</a>
+                                <a href="{{ url('user!logout', {'id': session.user.id}) }}" class="p-2 hover:bg-gray-200  text-sm no-underline hover:no-underline block"><i class="fas fa-sign-out-alt fa-fw"></i> Connexion</a>
+                            </div>
+                    </div>
+                </li>
+            </ul>
+        {% else %}
+            <a href="{{ url('auth!login') }}" > <i class="fas fa-sign-in-alt py-5"></i></a>
+        {% endif %}
+    </div>
 </nav>

@@ -35,10 +35,13 @@ class ArticleController extends Controller
     public function indexMethod()
     {
 
+        if ($this->session->islogged()) {
+            $allArticles = ModelFactory::getModel('Article')->listData();
 
-        $allArticles = ModelFactory::getModel('Article')->listData();
+            return $this->render('admin/blog/index.twig', ['allArticles' => $allArticles]);
+        }
 
-        return $this->render('admin/blog/index.twig', ['allArticles' => $allArticles]);
+        $this->redirect('admin!');
 
      
     }
@@ -51,21 +54,24 @@ class ArticleController extends Controller
      */
     public function createMethod()
     {
-        if (!empty($this->post)) {
+        if ($this->session->islogged()) {
+            if (!empty($this->post)) {
+                $data['title']        = $this->post['title'];
+                $data['content']      = $this->post['content'];
+                $data['createdAt']    = $this->post['date'];
+                $data['updatedAt']    = $this->post['date'];
+                $data['user_id']      = 1;
 
-            $data['title']        = $this->post['title'];
-            $data['content']      = $this->post['content'];
-            $data['createdAt']    = $this->post['date'];
-            $data['updatedAt']    = $this->post['date'];
-            $data['user_id']      = 1;
 
+                ModelFactory::getModel('Article')->createData($data);
+                $this->cookie->createAlert('Nouvel article créé avec succès !');
 
-            ModelFactory::getModel('Article')->createData($data);
-            $this->cookie->createAlert('Nouvel article créé avec succès !');
-
-            $this->redirect('article!index');
+                $this->redirect('article!index');
+            }
+            return $this->render('admin/blog/create.twig');
         }
-        return $this->render('admin/blog/create.twig');
+        $this->redirect('admin!');
+
     }
 
     /**
@@ -106,27 +112,33 @@ class ArticleController extends Controller
      */
     public function updateMethod()
     {
-        
-        if (!empty($this->post)) {
+        if ($this->session->islogged()) {
+            if (!empty($this->post)) {
+                $data['title']        = $this->post['title'];
+                $data['content']      = $this->post['content'];
 
-            $data['title']        = $this->post['title'];
-            $data['content']      = $this->post['content'];
+                ModelFactory::getModel('Article')->updateData($this->get['id'], $data);
 
-            ModelFactory::getModel('Article')->updateData($this->get['id'], $data);
+                $this->redirect('admin');
+            }
+            $this->cookie->createAlert('Article définitivement supprimé !');
+            $article = ModelFactory::getModel('Article')->readData($this->get['id']);
 
-            $this->redirect('admin');
+            return $this->render('admin/blog/update.twig', ['article' => $article]);
         }
-        $this->cookie->createAlert('Article définitivement supprimé !');
-        $article = ModelFactory::getModel('Article')->readData($this->get['id']);
+        $this->redirect('admin!');
 
-        return $this->render('admin/blog/update.twig', ['article' => $article]);
     }
 
     public function deleteMethod()
     {
-        ModelFactory::getModel('Article')->deleteData($this->get['id']);
-        $this->cookie->createAlert('Article définitivement supprimé !');
+        if ($this->session->islogged()) {
+            ModelFactory::getModel('Article')->deleteData($this->get['id']);
+            $this->cookie->createAlert('Article définitivement supprimé !');
 
-        $this->redirect('article!index');
+            $this->redirect('article!index');
+        }
+        $this->redirect('admin!');
+
     }
 }

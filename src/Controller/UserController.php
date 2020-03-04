@@ -33,14 +33,22 @@ class UserController extends Controller
     public function indexMethod()
     {
     
+        if ($this->session->islogged()) {
             $allUsers = ModelFactory::getModel('User')->listData();
 
             return $this->render('admin/user/index.twig', ['allUsers' => $allUsers]);
-       // $this->cookie->createAlert('Vous devez être connecté pour accéder à l\'administration');
-
-        //$this->redirect('user!login');
+            $this->cookie->createAlert('Vous devez être connecté pour accéder à l\'administration');
+        }
+        $this->redirect('user!login');
 
      
+    }
+
+      public function logoutMethod()
+    {
+        $this->session->stop();
+
+        $this->redirect('home');
     }
 
         /**
@@ -60,6 +68,7 @@ class UserController extends Controller
 
             $data['password']   = password_hash($this->post['password'], PASSWORD_DEFAULT);
             $data['login']   = $this->post['login'];
+            $data['first_name']   = $this->post['login'];
             $data['email']  = $this->post['email'];
 
             ModelFactory::getModel('User')->createData($data);
@@ -73,28 +82,31 @@ class UserController extends Controller
 
     public function updateMethod()
     {
-        if (!empty($this->post)) {
+        if ($this->session->islogged()) {
+            if (!empty($this->post)) {
+                $data['password']   = password_hash($this->post['password'], PASSWORD_DEFAULT);
+                $data['login']   = $this->post['login'];
+                $data['email']  = $this->post['email'];
 
-            $data['password']   = password_hash($this->post['password'], PASSWORD_DEFAULT);
-            $data['login']   = $this->post['login'];
-            $data['email']  = $this->post['email'];
+                ModelFactory::getModel('User')->updateData($this->get['id'], $data);
+                $this->cookie->createAlert('Modification réussie de l\'utilisateur sélectionné !');
 
-            ModelFactory::getModel('User')->updateData($this->get['id'], $data);
-            $this->cookie->createAlert('Modification réussie de l\'utilisateur sélectionné !');
+                $this->redirect('user!index');
+            }
+            $user = ModelFactory::getModel('User')->readData($this->get['id']);
 
-            $this->redirect('user!index');
+            return $this->render('admin/user/update.twig', ['user' => $user]);
         }
-        $user = ModelFactory::getModel('User')->readData($this->get['id']);
-
-        return $this->render('admin/user/update.twig', ['user' => $user]);
     }
 
     public function deleteMethod()
     {
-        ModelFactory::getModel('User')->deleteData($this->get['id']);
-        $this->cookie->createAlert('Utilisateur définitivement supprimé !');
+        if ($this->session->islogged()) {
+            ModelFactory::getModel('User')->deleteData($this->get['id']);
+            $this->cookie->createAlert('Utilisateur définitivement supprimé !');
 
-        $this->redirect('user!index');
+            $this->redirect('home');
+        }
     }
 
     /**
@@ -104,8 +116,10 @@ class UserController extends Controller
      */
     public function showMethod()
     {
-        $user = ModelFactory::getModel('User')->readData($this->get['id']);
+        if ($this->session->islogged()) {
+            $user = ModelFactory::getModel('User')->readData($this->get['id']);
 
-        return $this->render('admin/user/show.twig', ['user' => $user]);
+            return $this->render('admin/user/show.twig', ['user' => $user]);
+        }
     }
 }

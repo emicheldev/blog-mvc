@@ -40,26 +40,28 @@ class CommentController extends Controller
      */
     public function updateMethod()
     {
-        
-        if (!empty($this->post)) {
+        if ($this->session->islogged()) {
+            if (!empty($this->post)) {
+                $data['content']      = $this->post['content'];
 
-            $data['content']      = $this->post['content'];
+                ModelFactory::getModel('Comment')->updateData($this->get['id'], $data);
 
-            ModelFactory::getModel('Comment')->updateData($this->get['id'], $data);
+                $this->redirect('article!show', ['id' => $this->post['article_id']]);
+            }
+            $this->cookie->createAlert('Commentaire modifier !');
+            $comment = ModelFactory::getModel('Comment')->readData($this->get['id']);
 
-            $this->redirect('article');
+            return $this->render('blog/update.twig', ['comment' => $comment,'article_id' => $this->get['article_id']]);
         }
-        $this->cookie->createAlert('Commentaire modifier !');
-        $comment = ModelFactory::getModel('Comment')->readData($this->get['id']);
-
-        return $this->render('blog/update.twig', ['comment' => $comment]);
     }
 
     public function deleteMethod()
     {
-        ModelFactory::getModel('Comment')->deleteData($this->get['id']);
-        $this->cookie->createAlert('Commentaire définitivement supprimé !');
+        if ($this->session->islogged()) {
+            ModelFactory::getModel('Comment')->deleteData($this->get['id']);
+            $this->cookie->createAlert('Commentaire définitivement supprimé !');
 
-        $this->redirect('article!show', ['id' => $this->get['article_id']]);
+            $this->redirect('article!show', ['id' => $this->get['article_id']]);
+        }
     }
 }
