@@ -44,7 +44,7 @@ class UserController extends Controller
      
     }
 
-      public function logoutMethod()
+    public function logoutMethod()
     {
         $this->session->stop();
 
@@ -105,7 +105,7 @@ class UserController extends Controller
             ModelFactory::getModel('User')->deleteData($this->get['id']);
             $this->cookie->createAlert('Utilisateur définitivement supprimé !');
 
-            $this->redirect('home');
+            $this->logoutMethod();
         }
     }
 
