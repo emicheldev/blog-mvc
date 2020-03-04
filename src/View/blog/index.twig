@@ -13,8 +13,8 @@
                 <a href="{{ url('article!show', {'id': article.id}) }}">
                    <div class="mx-4 bg-white rounded-lg shadow-lg p-5 cursor-pointer hover:bg-gray-100 my-4">
                         <div class="card-pots-title flex flex-row">
-                        <div class="card-pots-title-color w-4 h-4 rounded-full bg-blue-700 mt-1"></div>
-                        <div class="card-pots-title-lib ml-3">{{ article.title}}</div>
+                        <div class="card-pots-title-color w-4 h-4 rounded-full bg-blue-700 mt-2"></div>
+                        <div class="card-pots-title-lib font-bold text-xl ml-3">{{ article.title}}</div>
                     </div>
                     <div class="card-pots-publish font-light text-gray-700">
                         Publier le {{article.createdAt|date('d M Y',"Europe/Paris")}}
@@ -23,7 +23,7 @@
                         <p class="text-justify text-gray-700 mt-4">
                             {{ article.content|slice(0, 150) }} 
                         </p>
-                        <button class="rounded-lg bg-blue-200 text-blue-700 border py-1 px-2 mt-2 text-xl">Lire plus</button>
+                        <button class="rounded-lg bg-blue-200 text-blue-700 border py-1 px-2 mt-2 text-sm">Lire plus</button>
                     </div>   
                    </div> 
                </a>

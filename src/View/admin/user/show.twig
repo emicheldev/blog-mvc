@@ -34,7 +34,15 @@
                     {{user.email}}
                 </div>
             </div>
+ 
+
         </div>
    
     </div>
+
+    <p class=" text-center">
+        {% if session.user.id == user.id %}
+            <a href="{{ url('user!delete',{'id': session.user.id}) }} "> Supprimer votre compte </a> <i class="em em-flushed mr-5" aria-role="presentation" aria-label="FLUSHED FACE"></i>
+        {% endif %}
+    </p>
 {% endblock %}

@@ -68,6 +68,7 @@ class UserController extends Controller
 
             $data['password']   = password_hash($this->post['password'], PASSWORD_DEFAULT);
             $data['login']   = $this->post['login'];
+            $data['first_name']   = $this->post['login'];
             $data['email']  = $this->post['email'];
 
             ModelFactory::getModel('User')->createData($data);
@@ -104,7 +105,7 @@ class UserController extends Controller
             ModelFactory::getModel('User')->deleteData($this->get['id']);
             $this->cookie->createAlert('Utilisateur définitivement supprimé !');
 
-            $this->redirect('user!index');
+            $this->redirect('home');
         }
     }
 

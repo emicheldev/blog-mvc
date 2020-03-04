@@ -36,6 +36,9 @@ class AdminController extends Controller
             ]);
         }
 
+        $this->redirect('admin');
+
+
 
     }
 

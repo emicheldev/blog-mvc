@@ -40,6 +40,9 @@ class ArticleController extends Controller
 
             return $this->render('admin/blog/index.twig', ['allArticles' => $allArticles]);
         }
+
+        $this->redirect('admin!');
+
      
     }
 
@@ -67,6 +70,8 @@ class ArticleController extends Controller
             }
             return $this->render('admin/blog/create.twig');
         }
+        $this->redirect('admin!');
+
     }
 
     /**
@@ -121,6 +126,8 @@ class ArticleController extends Controller
 
             return $this->render('admin/blog/update.twig', ['article' => $article]);
         }
+        $this->redirect('admin!');
+
     }
 
     public function deleteMethod()
@@ -131,5 +138,7 @@ class ArticleController extends Controller
 
             $this->redirect('article!index');
         }
+        $this->redirect('admin!');
+
     }
 }
