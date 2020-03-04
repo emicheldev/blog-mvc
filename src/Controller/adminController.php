@@ -22,6 +22,7 @@ class AdminController extends Controller
      */
     public function defaultMethod()
     {
+        if ($this->session->islogged()) {
             $allArticles = ModelFactory::getModel('Article')->listData();
             $allComments = ModelFactory::getModel('Comment')->listData();
             $allUsers    = ModelFactory::getModel('User')   ->listData();
@@ -33,9 +34,9 @@ class AdminController extends Controller
             'allComments'       => $allComments,
             'allUsers'          => $allUsers,
             ]);
+        }
 
 
-        //$this->redirect('user!login');
     }
 
 }

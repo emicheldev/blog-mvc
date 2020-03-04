@@ -19,6 +19,9 @@
                 {{comment.content }}
                 </textarea>
                 </div>
+                <input name="date" type="hidden" value="{{ date()|date('Y-m-d H:i:s') }}">
+                <input name="article_id" type="hidden" value="{{ article_id }}">
+
             </div>
             <div class="md:flex md:items-center">
                 <div class="md:w-1/3">

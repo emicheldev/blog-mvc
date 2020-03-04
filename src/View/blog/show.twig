@@ -13,7 +13,9 @@
   <article>
     <h1 class="text-4xl text-black font-semibold mb-2 leading-tight">{{article.title}}</h1>
     <!-- Article Infos -->
-    <p class="text-lg text-gray-500">Posté le {{ date(article.created_date)|date('d M Y') }} à {{ date(article.created_date)|date('H:i') }}</p>
+    <p class="text-lg text-gray-500">Publié le {{ date(article.created_date)|date('d M Y',"Europe/Paris") }} 
+        à {{ date(article.created_date)|date('H:i') }} par 
+    </p>
     <div class="w-16 h-px bg-black mb-6"></div>
 
     <!-- Article Content -->
@@ -79,9 +81,11 @@
                   </div>
               </div>
               <div class="icone-action">
-                <a href="{{ url('comment!update', {'id': comment.id}) }}" class="mr-3 text-sm" title="Modifier"><i class="fas fa-pen text-orange-500" ></i></a>
+                {% if (session.user|length != 0) %}
+                  <a href="{{ url('comment!update', {'id': comment.id,'article_id':article.id}) }}" class="mr-3 text-sm" title="Modifier"><i class="fas fa-pen text-orange-500" ></i></a>
 
-                <a href="{{ url('comment!delete', {'id': comment.id,'article_id':article.id}) }}" class="text-sm " title="Supprimer"><i class="fas fa-trash text-red-500"></i></a>
+                  <a href="{{ url('comment!delete', {'id': comment.id,'article_id':article.id}) }}" class="text-sm " title="Supprimer"><i class="fas fa-trash text-red-500"></i></a>
+                {% endif %}
               </div>
             </div>
             <div class="comment-content mt-3">
