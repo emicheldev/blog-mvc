@@ -81,6 +81,16 @@ abstract class MainModel
         return $this->database->getData($query, [$value]);
     }
 
+    public function publishData(string $value, string $key = null)
+    {
+      
+            $query = 'SELECT * FROM ' . $this->table . ' WHERE publish = 1';
+    
+
+        return $this->database->getData($query, [$value]);
+    }
+
+
     /**
      * Updates Data from its id or another key
      * @param string $value
@@ -123,4 +133,6 @@ abstract class MainModel
 
         $this->database->setData($query, [$value]);
     }
+
+
 }
