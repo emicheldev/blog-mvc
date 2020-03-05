@@ -11,15 +11,26 @@ use App\Model\Factory\ModelFactory;
  */
 class CommentController extends Controller
 {
+    public function indexMethod()
+    {
+       // if ($this->session->islogged()) {
+        $allComments = ModelFactory::getModel('Comment')->listData();
+            
+            return $this->render('admin/comment/index.twig', ['allComments' => $allComments]);
+       # }
+
+     #   $this->redirect('admin!');
+    }
+
     public function createMethod()
     {
         if ($this->session->islogged()) {
 
             $data['article_id']   = $this->get['id'];
             $data['content']      = $this->post['content'];
-            $data['createdAt'] = $this->post['date'];
+            $data['createdAt']    = $this->post['date'];
             $data['user_id']      = $_SESSION['user']['id'];
-            $data['date_last_modif']      = $this->post['date'];
+            $data['updateAt']     = $this->post['date'];
 
             ModelFactory::getModel('Comment')->createData($data);
 
@@ -53,7 +64,28 @@ class CommentController extends Controller
 
             return $this->render('blog/update.twig', ['comment' => $comment,'article_id' => $this->get['article_id']]);
         }
+        $this->redirect('auth');
+
     }
+
+
+    public function updateStatutMethod()
+    {
+        //if ($this->session->islogged()) {
+            if (!empty($this->get)) {
+                $data['publish']      = $this->get['publish'];
+
+                ModelFactory::getModel('Comment')->updateData($this->get['id'], $data);
+
+            }
+            $this->cookie->createAlert('Statut du Commentaire modifier !');
+
+            $this->redirect('comment!index');
+        #}
+        #$this->redirect('admin!');
+
+    }
+
 
     public function deleteMethod()
     {
