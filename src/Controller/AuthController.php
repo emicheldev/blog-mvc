@@ -40,7 +40,8 @@ class AuthController extends Controller
                 $this->session->createSession(
                     $user['id'],
                     $user['login'],
-                    $user['email']
+                    $user['email'],
+                    $user['role']
                 );
 
                 $this->cookie->createAlert('Authentification réussie, bienvenue ' . $user['login'] .' !');
