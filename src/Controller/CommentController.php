@@ -96,4 +96,14 @@ class CommentController extends Controller
             $this->redirect('article!show', ['id' => $this->get['article_id']]);
         }
     }
+
+    public function deleteBackMethod()
+    {
+        if ($this->session->islogged()) {
+            ModelFactory::getModel('Comment')->deleteData($this->get['id']);
+            $this->cookie->createAlert('Commentaire définitivement supprimé !');
+
+            $this->redirect('comment!index');
+        }
+    }
 }

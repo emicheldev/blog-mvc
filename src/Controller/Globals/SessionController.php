@@ -99,13 +99,15 @@ class SessionController
      * @param int $id
      * @param string $login
      * @param string $email
+     * @param string $role
      */
-    public function createSession(int $id, string $login, string $email)
+    public function createSession(int $id, string $login, string $email, string $role)
     {
         $_SESSION['user'] = [
-            'id'    => $id,
+            'id'     => $id,
             'login'  => $login,
-            'email' => $email
+            'email'  => $email,
+            'role'   => $role,
         ];
     }
 
