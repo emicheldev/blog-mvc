@@ -41,7 +41,7 @@ class ArticleController extends Controller
             return $this->render('admin/blog/index.twig', ['allArticles' => $allArticles]);
         }
 
-        $this->redirect('admin!');
+        $this->redirect('auth');
 
      
     }
@@ -70,7 +70,7 @@ class ArticleController extends Controller
             }
             return $this->render('admin/blog/create.twig');
         }
-        $this->redirect('admin!');
+        $this->redirect('auth');
 
     }
 
@@ -82,11 +82,10 @@ class ArticleController extends Controller
      */
     public function showMethod()
     {
-        //$dataId = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
-
         $article    = ModelFactory::getModel('Article')->readData($this->get['id']);
-     
+        $article    += ModelFactory::getModel('User')->readData($article['user_id']);
         $comments   = ModelFactory::getModel('Comment')->listData($this->get['id'], 'article_id');
+
 
         if(!empty($comments)) {
 
@@ -95,9 +94,10 @@ class ArticleController extends Controller
                 $userId = $comments[$i]['user_id'];
                 $user   = ModelFactory::getModel('User')->readData($userId);
 
-                $comments[$i]['user']   = $user['first_name'];
+                $comments[$i]['user']   = $user['login'];
             }
         } 
+
         return $this->render('blog/show.twig', [
             'article'   => $article,
             'comments'  => $comments
@@ -126,7 +126,7 @@ class ArticleController extends Controller
 
             return $this->render('admin/blog/update.twig', ['article' => $article]);
         }
-        $this->redirect('admin!');
+        $this->redirect('auth');
 
     }
 
@@ -138,7 +138,7 @@ class ArticleController extends Controller
 
             $this->redirect('article!index');
         }
-        $this->redirect('admin!');
+        $this->redirect('auth');
 
     }
 }
