@@ -27,7 +27,7 @@ class PdoFactory
 
         if (self::$pdo === null) {
             self::$pdo = new PDO(DB_DSN, DB_USER, DB_PASS, DB_OPTIONS);
-            self::$pdo->exec('SET NAMES UTF8');
+            self::$pdo->exec('SET NAMES utf8mb4');
         }
 
         return self::$pdo;

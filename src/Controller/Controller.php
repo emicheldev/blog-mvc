@@ -9,6 +9,7 @@ use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
 use Twig\Extension\DebugExtension;
 use Twig\Loader\FilesystemLoader;
+use Twig\Extra\Intl\IntlExtension;
 use Twig\TwigFilter;
 
 /**
@@ -42,6 +43,7 @@ abstract class Controller extends SuperGlobalsController
         ));
         $this->twig->addExtension(new DebugExtension());
         $this->twig->addExtension(new PhpAdditionalExtension());
+        $this->twig->addExtension(new IntlExtension());
         $this->twig->addGlobal('session', filter_var_array($_SESSION));
         $this->twig->addGlobal('file', filter_var_array($_FILES));
         $this->twig->addFilter( new TwigFilter('nl2br', 'nl2br', ['is_safe' => ['html']]));

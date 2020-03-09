@@ -29,7 +29,7 @@
 
     <!-- Add Comment Form -->
     {% if (session.user|length != 0) %}
-        <form id="comment" method="post" action="{{ url('comment!create', {'id': article.id}) }}" >
+        <form id="editorSection" method="post" action="{{ url('comment!create', {'id': article.id}) }}" >
 
           <fieldset>
             <legend class="mb-4"><i class="fa fa-comment-o fa-lg " aria-hidden="true"></i> Ajouter un commentaire</legend>
