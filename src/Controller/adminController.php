@@ -27,8 +27,6 @@ class AdminController extends Controller
             $allComments = ModelFactory::getModel('Comment')->listData();
             $allUsers    = ModelFactory::getModel('User')   ->listData();
             
-            $this->cookie->createAlert('Vous devez être connecté pour accéder à l\'administration');
-
             return $this->render('admin/index.twig', [
             'allArticles'       => $allArticles,
             'allComments'       => $allComments,

@@ -25,11 +25,6 @@ abstract class Controller extends SuperGlobalsController
     protected $twig = null;
 
     /**
-     * @var array
-     */
-    private $post_content = [];
-
-    /**
      * MainController constructor
      * Creates the Template Engine & adds its Extensions
      */
@@ -45,8 +40,7 @@ abstract class Controller extends SuperGlobalsController
         $this->twig->addExtension(new PhpAdditionalExtension());
         $this->twig->addExtension(new IntlExtension());
         $this->twig->addGlobal('session', filter_var_array($_SESSION));
-        $this->twig->addGlobal('file', filter_var_array($_FILES));
-        $this->twig->addFilter( new TwigFilter('nl2br', 'nl2br', ['is_safe' => ['html']]));
+        $this->twig->addGlobal('cookie', filter_var_array($_COOKIE));        
         
     }
 
