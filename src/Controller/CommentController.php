@@ -13,13 +13,13 @@ class CommentController extends Controller
 {
     public function indexMethod()
     {
-       // if ($this->session->islogged()) {
-        $allComments = ModelFactory::getModel('Comment')->listData();
+        if ($this->session->islogged()) {
+            $allComments = ModelFactory::getModel('Comment')->listData();
             
             return $this->render('admin/comment/index.twig', ['allComments' => $allComments]);
-       # }
+        }
 
-     #   $this->redirect('admin!');
+       $this->redirect('auth');
     }
 
     public function createMethod()
@@ -43,7 +43,7 @@ class CommentController extends Controller
         $this->redirect('user!login');
     }
 
-        /**
+    /**
      * @return string
      * @throws LoaderError
      * @throws RuntimeError
@@ -68,10 +68,29 @@ class CommentController extends Controller
 
     }
 
+    public function updateBackendMethod()
+    {
+        if ($this->session->islogged()) {
+            if (!empty($this->post)) {
+                $data['content']      = $this->post['content'];
+
+                ModelFactory::getModel('Comment')->updateData($this->get['id'], $data);
+
+                $this->redirect('comment!index');
+            }
+            $this->cookie->createAlert('Commentaire modifier !');
+            $comment = ModelFactory::getModel('Comment')->readData($this->get['id']);
+
+            return $this->render('admin/comment/update.twig', ['comment' => $comment]);
+        }
+        $this->redirect('auth');
+
+    }
+
 
     public function updateStatutMethod()
     {
-        //if ($this->session->islogged()) {
+        if ($this->session->islogged()) {
             if (!empty($this->get)) {
                 $data['publish']      = $this->get['publish'];
 
@@ -81,8 +100,8 @@ class CommentController extends Controller
             $this->cookie->createAlert('Statut du Commentaire modifier !');
 
             $this->redirect('comment!index');
-        #}
-        #$this->redirect('admin!');
+        }
+        $this->redirect('auth');
 
     }
 

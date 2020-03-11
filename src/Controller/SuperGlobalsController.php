@@ -17,14 +17,9 @@ abstract class SuperGlobalsController
     protected $cookie = null;
 
     /**
-     * @var GetController
+     * @var FlashController
      */
-    protected $get = null;
-
-    /**
-     * @var PostController
-     */
-    protected $post = null;
+    protected $flash = null;
 
     /**
      * @var SessionController
