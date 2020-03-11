@@ -107,6 +107,8 @@ class UserController extends Controller
 
             $this->logoutMethod();
         }
+        $this->redirect('user!index');
+
     }
 
     /**
