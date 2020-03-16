@@ -1,0 +1,39 @@
+{% extends 'layout/layout.twig' %}
+
+{% block subtitle %}Authentication{% endblock %}
+
+{% block description %}{% endblock %}
+
+{% block body %}
+    <main class="h-screen">
+        <div class="flex justify-center my-5">
+            <img src="img/avatar.png" alt="avatar" srcset="" class="w-20 h-20 rounded-full"> 
+        </div>
+        <h1 class="text-center font-bold text-2xl ">connectez-vous</h1>
+
+        <form class="form" action="{{ url('auth!login')}}" method="post">
+           <div class="bg-white  rounded px-8 pt-6 pb-8 mb-4 flex flex-col">
+                <div class="mb-4">
+                  <label class="block text-grey-darker text-sm font-bold mb-2" for="login">
+                    Login
+                  </label>
+                  <input class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" name="login" id="login" type="text" placeholder="login" >
+                </div>
+                <div class="mb-6">
+                  <label class="block text-grey-darker text-sm font-bold mb-2" for="password">
+                    Mot de passe
+                  </label>
+                  <input class="shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3" name="password" id="password" type="password" placeholder="******************">
+                </div>
+                <div class="flex items-center justify-between">
+                  <button class="bg-blue hover:bg-blue-dark text-blue-500 font-bold py-2 px-4 rounded" type="submit">
+                    Se connecter
+                  </button>
+                  <a class="inline-block align-baseline font-bold text-sm text-blue hover:text-blue-darker" href="{{ url('user')}} ">
+                    S'inscrire
+                  </a>
+                </div>
+            </div>
+        </form>
+    </main>
+{% endblock %}

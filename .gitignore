@@ -1,0 +1,15 @@
+# Jetbrains
+.idea/
+.vscode
+
+# DB (uncomment when you start using the template)
+# config/db.php
+# config/db.sql
+
+# Images
+public/img/
+
+# Dependencies
+public/node_modules/
+public/webfonts/
+vendor/

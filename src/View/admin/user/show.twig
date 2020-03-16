@@ -1,0 +1,48 @@
+{% extends 'admin/layout/layout.twig' %}
+
+{% block body %}
+
+<div class="text-gray-900 bg-gray-400">
+    <div class=" flex justify-center px-5 h-40 flex items-center">
+        <div class="user-login relative">
+            <h1 class="text-3xl mx-auto flex justify-center items-center bg-blue-400 rounded-full w-24 h-24">
+            <i class="far fa-user text-blue-700 text-4xl  "></i>
+            </h1>
+            <h2 class="text-center text-3xl"> {{user.login}} <a href="{{ url('user!update', {'id': user.id}) }}"><i class="fas fa-pen text-xl text-orange-500"></i></a></h2>
+        </div>
+    
+        
+    </div>
+    
+</div>
+
+    <div class="flex justify-center my-5 ">
+         <div class="flex flex-wrap  mb-6 ">
+            <div class="flex flex-row w-full md:w-1/2 px-3 mb-6 md:mb-0 ">
+                <div class=" uppercase tracking-wide text-gray-700 text-lg font-bold mb-2 pr-2" >
+                   Login: 
+                </div>
+                <div class=" uppercase tracking-wide text-gray-700 text-lg  mb-2" >
+                   {{user.login}}
+                </div>
+            </div>
+            <div class="flex flex-row w-full md:w-1/2 px-3 sm:pl-20">
+                <div class=" uppercase tracking-wide text-gray-700 text-lg font-bold mb-2" >
+                   Email:
+                </div>
+                <div class=" uppercase tracking-wide text-gray-700 text-lg  mb-2" >
+                    {{user.email}}
+                </div>
+            </div>
+ 
+
+        </div>
+   
+    </div>
+
+    <p class=" text-center">
+        {% if session.user.id == user.id %}
+            <a href="{{ url('user!delete',{'id': session.user.id}) }} "> Supprimer votre compte </a> <i class="em em-flushed mr-5" aria-role="presentation" aria-label="FLUSHED FACE"></i>
+        {% endif %}
+    </p>
+{% endblock %}

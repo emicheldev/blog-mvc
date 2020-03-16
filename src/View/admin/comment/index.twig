@@ -1,0 +1,75 @@
+{% extends 'admin/layout/layout.twig' %}
+
+{% block body %}
+
+    <div class="text-gray-900 bg-gray-200">
+    <div class="p-4 flex justify-between">
+        <h1 class="text-3xl">
+            Commentaires
+        </h1> 
+        
+    </div>
+    <div class="px-3 py-4 flex justify-center">
+        <table class="w-full text-md bg-white shadow-md rounded mb-4">
+            <tbody>
+                <tr class="border-b">
+                    <th class="text-left p-3 px-5">Id</th>
+                    <th class="text-left p-3 px-5">Commentaire</th>
+                    <th class="text-left p-3 px-5">Auteur</th>
+                    <th class="text-left p-3 px-5">N° article</th>
+                    <th class="text-left p-3 px-5">Publier le</th>
+                    <th class="text-left p-3 px-5">Status</th>
+                    <th></th>
+                </tr>
+            
+                {% for allComment in allComments %}
+                    
+                    {% if loop.index  is odd %}
+                         <tr class="border-b hover:bg-green-100">
+                    {% else %}
+                    <tr class="border-b hover:bg-green-100 bg-gray-100">
+                    {% endif %}
+
+                        <td class="p-3 px-5">{{allComment.id}}</td>
+                        <td class="p-3 px-5">{{allComment.content|slice(0, 150)}}</td>
+                        <td class="p-3 px-5">{{allComment.user_id }} </td>
+                        <td class="p-3 px-5">{{allComment.article_id }} </td>
+                        <td class="p-3 px-5">
+                           {{ allComment.createdAt|date('d M Y')}}
+                        </td>
+                        <td class="p-3 px-5">
+
+
+                            {% if allComment.publish == '0' %}
+                                {% if allComment.user_id == session.user.id or session.user.role == 'admin'  %}
+                                    <a href="{{ url('comment!updateStatut',{'id': allComment.id,'publish': 1}) }}" class=" text-sm text-gray-600 py-1 px-2 " title="Valider ce commentaire" >
+                                        <i class="far fa-eye"></i>
+                                    </a>
+                                {% endif %}
+                                <i class="far fa-eye-slash text-sm text-gray-600 py-1 px-2  text-blue-600"></i>
+                            {% else %}
+                                <i class="far fa-eye text-sm text-gray-600 py-1 px-2  text-blue-600"></i>
+                                
+                                {% if allComment.user_id == session.user.id or session.user.role == 'admin'  %}
+                                    <a href="{{ url('comment!updateStatut',{'id': allComment.id,'publish': 0}) }}" class=" text-sm text-gray-600 py-1 px-2 " title="Rendre priver ce commentaire" >
+                                        <i class="far fa-eye-slash "></i>
+                                    </a>
+                                {% endif %}
+                            {% endif %}
+
+                        </td>
+                        <td class="p-3 px-5 flex justify-end">
+                            {% if comment.user_id == session.user.id or session.user.role == 'admin'  %}
+                                <a href="{{ url('comment!updateBackend', {'id': allComment.id}) }}" class="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline" title="Modifier"><i class="fas fa-pen"></i></a>
+                                <a href="{{ url('comment!deleteBack', {'id': allComment.id}) }}" class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline" title="Supprimer"><i class="fas fa-trash"></i></a>
+                            {% endif %}
+                        </td>
+                    </tr>
+
+                 {% endfor %}
+                
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
