@@ -3,8 +3,8 @@
 .vscode
 
 # DB (uncomment when you start using the template)
-# config/db.php
-# config/db.sql
+config/db.php
+config/db.sql
 
 # Images
 public/img/
