@@ -16,6 +16,7 @@
   "bugs": "https://github.com/emicheldev/blog-mvc/issues",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.12.1",
+    "acorn": "^7.1.1",
     "tailwindcss": "^1.2.0"
   },
   "author": {
