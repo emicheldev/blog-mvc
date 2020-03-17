@@ -74,22 +74,14 @@ abstract class MainModel
     {
         if (isset($key)) {
             $query = 'SELECT * FROM ' . $this->table . ' WHERE ' . $key . ' = ?';
-        } else {
-            $query = 'SELECT * FROM ' . $this->table . ' WHERE id = ?';
+
+            return $this->database->getData($query, [$value]);
         }
 
-        return $this->database->getData($query, [$value]);
-    }
-
-    public function publishData(string $value, string $key = null)
-    {
-      
-            $query = 'SELECT * FROM ' . $this->table . ' WHERE publish = 1';
-    
+        $query = 'SELECT * FROM ' . $this->table . ' WHERE id = ?';
 
         return $this->database->getData($query, [$value]);
     }
-
 
     /**
      * Updates Data from its id or another key
@@ -104,7 +96,6 @@ abstract class MainModel
 
         foreach ($data as $dataKey => $dataValue) {
             $set .= $dataKey . ' = "' . $dataValue . '", ';
-            
         }
 
         $set = substr_replace($set, '', -2);
@@ -133,6 +124,4 @@ abstract class MainModel
 
         $this->database->setData($query, [$value]);
     }
-
-
 }
