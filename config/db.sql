@@ -1,6 +1,6 @@
 -- noinspection SqlNoDataSourceInspectionForFile
 
--- noinspection SqlDialectInspectionForFile
+-- noinspection SqlDialectInspectionForFile 
 
 -- Listage de la structure de la base pour blog_mvc
 CREATE DATABASE IF NOT EXISTS `blog_mvc`;
