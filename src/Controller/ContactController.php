@@ -30,6 +30,7 @@ class ContactController extends Controller
     {
         if (!empty($this->post)) {
             $mail = new PHPMailer(true);
+            $mailHelper= new MailHelper();
 
 
             $mail->isSMTP();
@@ -47,7 +48,7 @@ class ContactController extends Controller
             $mail->Subject = 'Test Email via Mailtrap SMTP using PHPMailer';
             $mail->isHTML(true);
 
-            $mail->Body = MailHelper::htmlMail($this->post['message']);
+            $mail->Body = $mailHelper->htmlMail($this->post['message']);
 
             if ($mail->send()) {
                 $this->cookie->createAlert('Votre message nous a été envoyer avec success, Merci 😉');
