@@ -10,7 +10,6 @@ use Twig\Error\SyntaxError;
 use Twig\Extension\DebugExtension;
 use Twig\Loader\FilesystemLoader;
 use Twig\Extra\Intl\IntlExtension;
-use Twig\TwigFilter;
 
 /**
  * Class MainController
@@ -23,6 +22,7 @@ abstract class Controller extends SuperGlobalsController
      * @var Environment|null
      */
     protected $twig = null;
+    
 
     /**
      * MainController constructor
@@ -30,6 +30,7 @@ abstract class Controller extends SuperGlobalsController
      */
     public function __construct()
     {
+        $varSession=$_SESSION;
         parent::__construct();
 
         $this->twig = new Environment(new FilesystemLoader('../src/View'), array(
@@ -39,7 +40,7 @@ abstract class Controller extends SuperGlobalsController
         $this->twig->addExtension(new DebugExtension());
         $this->twig->addExtension(new PhpAdditionalExtension());
         $this->twig->addExtension(new IntlExtension());
-        $this->twig->addGlobal('session', filter_var_array($_SESSION));
+        $this->twig->addGlobal('session', filter_var_array($this->varSession));
         $this->twig->addGlobal('cookie', filter_var_array($_COOKIE));        
         
     }
@@ -81,24 +82,6 @@ abstract class Controller extends SuperGlobalsController
         return $this->twig->render($view, $params);
     }
 
-    
-    /**
-     * listData
-     *
-     * @param  mixed $value
-     * @param  mixed $key
-     *
-     * @return void
-     */
-    public function listData(string $value = null, string $key = null)
-    {
-        if (isset($key)) {
-            $query = 'SELECT * FROM ' . $this->table . ' WHERE ' . $key . ' = ?';
-            return $this->database->getAllData($query, [$value]);
-        }
-        $query = 'SELECT * FROM ' . $this->table;
-        return $this->database->getAllData($query);
-    }
 
 
 }

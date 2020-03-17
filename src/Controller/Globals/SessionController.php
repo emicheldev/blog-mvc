@@ -25,16 +25,6 @@ class SessionController
             return $_SESSION[$name]["id"];
     }
 
-    public function show($name,$value)
-    {
-        if(isset($_SESSION[$name]))
-        {
-            $key = $this->get($name);
-            $this->remove($name);
-            return $key;
-        }
-    }
-
     public function remove($name)
     {
         unset($_SESSION[$name]);

@@ -52,9 +52,9 @@ class ContactController extends Controller
 
             if ($mail->send()) {
                 $this->cookie->createAlert('Votre message nous a été envoyer avec success, Merci 😉');
-            } else {
-                $this->cookie->createAlert('Il y\'a une erreur 😥 ');
-            }
+                $this->redirect('contact!contact');
+            } 
+            $this->cookie->createAlert('Il y\'a une erreur 😥 ');
 
             $this->redirect('contact!contact');
         }
