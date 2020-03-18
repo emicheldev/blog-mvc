@@ -81,6 +81,4 @@ abstract class Controller extends SuperGlobalsController
         return $this->twig->render($view, $params);
     }
 
-
-
 }
