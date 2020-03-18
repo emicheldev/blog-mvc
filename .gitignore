@@ -4,10 +4,9 @@ config/
 # Images
 public/img/
 public/css/
-
+public/js/app.js
 
 # Dependencies
 public/node_modules/
 public/webfonts/
 vendor/
-
