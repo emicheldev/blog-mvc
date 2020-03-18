@@ -1,9 +1,10 @@
-
 # DB (uncomment when you start using the template)
 config/
 
 # Images
 public/img/
+public/css/
+
 
 # Dependencies
 public/node_modules/

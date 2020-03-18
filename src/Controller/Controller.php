@@ -40,9 +40,8 @@ abstract class Controller extends SuperGlobalsController
         $this->twig->addExtension(new DebugExtension());
         $this->twig->addExtension(new PhpAdditionalExtension());
         $this->twig->addExtension(new IntlExtension());
-        $this->twig->addGlobal('session', filter_var_array($this->varSession));
+        $this->twig->addGlobal('session', filter_var_array($varSession));
         $this->twig->addGlobal('cookie', filter_var_array($_COOKIE));        
-        
     }
 
     /**
