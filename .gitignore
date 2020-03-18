@@ -3,8 +3,11 @@ config/
 
 # Images
 public/img/
+public/css/
+
 
 # Dependencies
 public/node_modules/
 public/webfonts/
 vendor/
+
