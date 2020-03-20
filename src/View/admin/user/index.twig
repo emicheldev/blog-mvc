@@ -40,7 +40,7 @@
                             <a href="{{ url('user!show', {'id': allUser.id}) }}" class="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"><i class="fas fa-eye"></i></a>
                             {% if allUser.id == session.user.id or session.user.role == 'admin'  %}
                                 <a href="{{ url('user!update', {'id': allUser.id}) }}" class="mr-3 text-sm bg-orange-500 hover:bg-orange-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"><i class="fas fa-pen "></i></a>
-                                <a href="{{ url('user!delete', {'id': allUser.id}) }}" class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"><i class="fas fa-trash"></i></a>
+                                <a href="{{ url('user!deleteAdmin', {'id': allUser.id}) }}" class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"  onclick="if(window.confirm('Voulez-vous vraiment supprimer ?')){return true;}else{return false;}"><i class="fas fa-trash"></i></a>
                             {% endif %}
                         </td>
                     </tr>

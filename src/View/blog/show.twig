@@ -11,15 +11,15 @@
 
   <!-- Article to Read -->
   <article>
-    <h1 class="text-4xl text-black font-semibold mb-2 leading-tight">{{article.title}}</h1>
+    <h1 class="text-4xl text-gray-300 font-semibold mb-2 leading-tight">{{article.title}}</h1>
     <!-- Article Infos -->
-    <p class="text-sm text-gray-500 ">Publié le {{ date(article.created_date)|date('d M Y',"Europe/Paris") }} 
-        à {{ date(article.created_date)|date('H:i') }} par <span class="text-gray-700">{{article.login}}</span>  
+    <p class="text-sm text-gray-600 ">Publié le {{ date(article.created_date)|date('d M Y',"Europe/Paris") }} 
+        à {{ date(article.created_date)|date('H:i') }} par <span class="text-gray-500 capitalize">{{article.login}}</span>  
     </p>
-    <div class="w-16 h-px bg-black mb-6"></div>
+    <div class="w-16 h-px bg-gray-300 mb-6"></div>
 
     <!-- Article Content -->
-    <p class="text-lg text-black leading-max text-justify">{{ article.content }}</p>
+    <p class="text-lg text-gray-400 leading-max text-justify">{{ article.content }}</p>
   </article>
 
   <!-- Comment Section -->
@@ -36,7 +36,7 @@
             <ul>
               <li>
                 <!-- Comment Content Field -->
-                <textarea class="w-full placeholder-gray-600 focus:placeholder-gray-500 p-5 rounded-sm" name="content" rows="3" placeholder="Insérez votre commentaire ici" required></textarea>
+                <textarea class="w-full placeholder-gray-600 focus:placeholder-gray-500 p-5 rounded-sm text-gray-800" name="content" rows="3" placeholder="Insérez votre commentaire ici" required></textarea>
               </li>
 
               <li class="btn-group mt-5">

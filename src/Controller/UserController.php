@@ -60,10 +60,11 @@ class UserController extends Controller
     public function registerMethod()
     {
         if (!empty($this->post)) {
-            $user = ModelFactory::getModel('User')->readData($this->post['email'], 'email');
+            $user = ModelFactory::getModel('User')->readData($this->post['login'], 'login');
 
             if (empty($user) == false) {
                 $this->cookie->createAlert('Il existe déjà un compte utilisateur avec cette adresse e-mail');
+                $this->redirect('user');
             }
 
             $data['password']   = password_hash($this->post['password'], PASSWORD_DEFAULT);
@@ -110,6 +111,19 @@ class UserController extends Controller
         $this->redirect('user!index');
 
     }
+
+    public function deleteAdminMethod()
+    {
+        if ($this->session->islogged()) {
+            ModelFactory::getModel('User')->deleteData($this->get['id']);
+            $this->cookie->createAlert('Utilisateur définitivement supprimé !');
+
+            $this->redirect('user!index');
+        }
+        $this->redirect('user!index');
+
+    }
+
 
     /**
      * showMethod

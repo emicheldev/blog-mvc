@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use App\Model\MainModel;
 use PDO;
 
 /**
@@ -9,7 +10,7 @@ use PDO;
  * Prepares Queries before execution & return
  * @package App\Model
  */
-class PdoDb
+class PdoDb extends MainModel
 {
     /**
      * PDO Connection

@@ -9,27 +9,39 @@
         <div class="flex justify-center my-5">
             <img src="img/avatar.png" alt="avatar" srcset="" class="w-20 h-20 rounded-full"> 
         </div>
-        <h1 class="text-center font-bold text-2xl ">connectez-vous</h1>
+        <h1 class="text-center font-bold text-2xl my-10 ">connectez-vous</h1>
+
+         {% if hasAlert() %}
+            <div class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 my-5 shadow-md"  role="alert">
+                <div class="flex">
+                    <div class="py-1"><svg class="fill-current h-6 w-6 text-teal-500 mr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"/></svg></div>
+                    <div>
+                    <p class="font-bold">Info </p>
+                    <p class="text-sm"> {{ readAlert() }} </p>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
 
         <form class="form" action="{{ url('auth!login')}}" method="post">
-           <div class="bg-white  rounded px-8 pt-6 pb-8 mb-4 flex flex-col">
+           <div class="bg-gray-100  rounded px-8 pt-6 pb-8 mb-4 flex flex-col">
                 <div class="mb-4">
-                  <label class="block text-grey-darker text-sm font-bold mb-2" for="login">
+                  <label class="block text-gray-900 text-sm font-bold mb-2" for="login">
                     Login
                   </label>
-                  <input class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" name="login" id="login" type="text" placeholder="login" >
+                  <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-900" name="login" id="login" type="text" placeholder="login"  required>
                 </div>
                 <div class="mb-6">
-                  <label class="block text-grey-darker text-sm font-bold mb-2" for="password">
+                  <label class="block text-gray-900 text-sm font-bold mb-2" for="password">
                     Mot de passe
                   </label>
-                  <input class="shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3" name="password" id="password" type="password" placeholder="******************">
+                  <input class="shadow appearance-none border border-red rounded w-full py-2 px-3 text-gray-900 mb-3" name="password" id="password" type="password" placeholder="******************" required>
                 </div>
                 <div class="flex items-center justify-between">
                   <button class="bg-blue hover:bg-blue-dark text-blue-500 font-bold py-2 px-4 rounded" type="submit">
                     Se connecter
                   </button>
-                  <a class="inline-block align-baseline font-bold text-sm text-blue hover:text-blue-darker" href="{{ url('user')}} ">
+                  <a class="inline-block align-baseline font-bold text-sm text-blue hover:text-blay-text-gray-900" href="{{ url('user')}} ">
                     S'inscrire
                   </a>
                 </div>
