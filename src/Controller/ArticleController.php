@@ -60,7 +60,7 @@ class ArticleController extends Controller
                 $data['content']      = $this->post['content'];
                 $data['createdAt']    = $this->post['date'];
                 $data['updatedAt']    = $this->post['date'];
-                $data['user_id']      = 1;
+                $data['user_id']      = $this->session->get('user');
 
 
                 ModelFactory::getModel('Article')->createData($data);

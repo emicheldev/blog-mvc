@@ -29,7 +29,7 @@ class CommentController extends Controller
             $data['article_id']   = $this->get['id'];
             $data['content']      = $this->post['content'];
             $data['createdAt']    = $this->post['date'];
-            $data['user_id']      = $this->session['user_id'];
+            $data['user_id']      = $this->session->get('user');
             $data['updateAt']     = $this->post['date'];
 
             ModelFactory::getModel('Comment')->createData($data);

@@ -61,7 +61,7 @@
                         <td class="p-3 px-5 flex justify-end">
                             {% if comment.user_id == session.user.id or session.user.role == 'admin'  %}
                                 <a href="{{ url('comment!updateBackend', {'id': allComment.id}) }}" class="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline" title="Modifier"><i class="fas fa-pen"></i></a>
-                                <a href="{{ url('comment!deleteBack', {'id': allComment.id}) }}" class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline" title="Supprimer"><i class="fas fa-trash"></i></a>
+                                <a href="{{ url('comment!deleteBack', {'id': allComment.id}) }}" class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline" title="Supprimer" onclick="if(window.confirm('Voulez-vous vraiment supprimer ?')){return true;}else{return false;}"><i class="fas fa-trash"></i></a>
                             {% endif %}
                         </td>
                     </tr>

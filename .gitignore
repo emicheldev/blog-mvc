@@ -1,9 +1,8 @@
 # DB (uncomment when you start using the template)
 config/
 
-# Images
-public/img/
-public/css/
+.idea/
+
 public/js/app.js
 
 # Dependencies
