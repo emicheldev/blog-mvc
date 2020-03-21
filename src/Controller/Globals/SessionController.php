@@ -17,17 +17,17 @@ class SessionController
 
     public function set($name, $value)
     {
-        $_SESSION[$name] = $value;
+        $this->session[$name] = $value;
     }
 
     public function get($name)
     {
-            return $_SESSION[$name]["id"];
+            return $this->session[$name]["id"];
     }
 
     public function remove($name)
     {
-        unset($_SESSION[$name]);
+        unset($this->session[$name]);
     }
 
     public function stop()

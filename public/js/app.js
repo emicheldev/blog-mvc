@@ -1,4 +1,5 @@
         /*Toggle dropdown list*/
+        var div;
         function toggleDD(myDropMenu) {
             document.getElementById(myDropMenu).classList.toggle("invisible");
         }

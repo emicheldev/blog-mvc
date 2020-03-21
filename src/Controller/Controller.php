@@ -23,14 +23,12 @@ abstract class Controller extends SuperGlobalsController
      */
     protected $twig = null;
     
-
     /**
      * MainController constructor
      * Creates the Template Engine & adds its Extensions
      */
     public function __construct()
     {
-        $varSession=$_SESSION;
         parent::__construct();
 
         $this->twig = new Environment(new FilesystemLoader('../src/View'), array(
@@ -40,7 +38,7 @@ abstract class Controller extends SuperGlobalsController
         $this->twig->addExtension(new DebugExtension());
         $this->twig->addExtension(new PhpAdditionalExtension());
         $this->twig->addExtension(new IntlExtension());
-        $this->twig->addGlobal('session', filter_var_array($varSession));
+        $this->twig->addGlobal('session', filter_var_array($_SESSION));
         $this->twig->addGlobal('cookie', filter_var_array($_COOKIE));        
     }
 
