@@ -1,8 +1,6 @@
 # DB (uncomment when you start using the template)
 config/
 
-.idea/
-
 public/js/app.js
 
 # Dependencies
