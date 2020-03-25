@@ -15,7 +15,7 @@
     "license": "MIT",
     "authors": [
       {
-        "name": "Philippe Beck",
+        "name": "Michel Mve",
         "email": "contact@emichel.dev",
         "homepage": "https://emichel.dev",
         "role": "Lead Developer"
@@ -34,7 +34,10 @@
         "zendframework/zend-diactoros": "^2.2",
         "tracy/tracy": "^2.7",
         "phpmailer/phpmailer": "^6.1",
-        "twig/intl-extra": "^3.0"
+        "twig/intl-extra": "^3.0",
+        "twig/markdown-extra": "^3.0",
+        "twig/extra-bundle": "^3.0",
+        "erusev/parsedown": "^1.7"
     },
     "config": {
       "platform": {

@@ -2,7 +2,10 @@
 namespace App\Controller;
 
 use App\Controller\Extension\PhpAdditionalExtension;
-use App\Model\Factory\ModelFactory;
+use Twig\Extra\Markdown\MarkdownExtension; //dand la doc c'est use Twig\Extra\Markdown\MarkdownMarkdownExtension;
+use Twig\Extra\Markdown\DefaultMarkdown;
+use Twig\Extra\Markdown\MarkdownRuntime;
+use Twig\RuntimeLoader\RuntimeLoaderInterface;
 use Twig\Environment;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
@@ -35,11 +38,19 @@ abstract class Controller extends SuperGlobalsController
             'cache' => false,
             'debug' => true
         ));
+        $this->twig->addExtension(new MarkdownExtension()); // dans la doc c'est 
         $this->twig->addExtension(new DebugExtension());
         $this->twig->addExtension(new PhpAdditionalExtension());
         $this->twig->addExtension(new IntlExtension());
         $this->twig->addGlobal('session', filter_var_array($_SESSION));
-        $this->twig->addGlobal('cookie', filter_var_array($_COOKIE));        
+        $this->twig->addGlobal('cookie', filter_var_array($_COOKIE));
+        $this->twig->addRuntimeLoader(new class implements RuntimeLoaderInterface {
+            public function load($class) {
+                if (MarkdownRuntime::class === $class) {
+                    return new MarkdownRuntime(new DefaultMarkdown());
+                }
+            }
+        });        
     }
 
     /**
