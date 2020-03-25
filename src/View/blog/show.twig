@@ -13,15 +13,33 @@
   <article>
     <h1 class="text-4xl text-gray-300 font-semibold mb-2 leading-tight">{{article.title}}</h1>
     <!-- Article Infos -->
-    <p class="text-sm text-gray-600 ">Publié le {{ date(article.created_date)|date('d M Y',"Europe/Paris") }} 
-        à {{ date(article.created_date)|date('H:i') }} par <span class="text-gray-500 capitalize">{{article.login}}</span>  
+    <p class="text-sm text-gray-600 ">Publié le {{ date(article.createdAt)|date('d M Y',"Europe/Paris") }} 
+        à {{ date(article.createdAt)|date('H:i') }} par <span class="text-gray-500 capitalize">{{article.login}}</span>  
     </p>
     <div class="w-16 h-px bg-gray-300 mb-6"></div>
+
+    <p class=" border-gray-300 border-l-2 p-4 my-5 rounded-sm">
+        {{ article.lead }}
+    </p>
 
     <!-- Article Content -->
     <p class="text-lg text-gray-400 leading-max text-justify">{{ article.content }}</p>
   </article>
 
+    <!-- Comment Secalerte -->
+
+
+  {% if hasAlert() %}
+      <div class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 my-5 shadow-md"  role="alert">
+                <div class="flex">
+                    <div class="py-1"><svg class="fill-current h-6 w-6 text-teal-500 mr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"/></svg></div>
+                    <div>
+                    <p class="font-bold">Info: Je vais verifier votre commentaire mais: </p>
+                    <p class="text-sm"> {{ readAlert() }} 😉 </p>
+                    </div>
+                </div>
+            </div>
+  {% endif %}
   <!-- Comment Section -->
   <section class="my-8">
     <h2><i class="fa fa-comments-o" aria-hidden="true"></i> Les Commentaires</h2>
@@ -53,7 +71,7 @@
           </fieldset>
         </form>
     {% else %}
-        <div class="bg-blue-300 p-5">
+        <div class="bg-gray-300 text-gray-600 p-5">
           Connecter vous pour ecrire un commentaire
         </div>
     {% endif  %}
@@ -83,7 +101,7 @@
                       {% if (session.user.login == comment.user) %}
                         <a href="{{ url('comment!update', {'id': comment.id,'article_id':article.id}) }}" class="mr-3 text-sm" title="Modifier"><i class="fas fa-pen text-orange-500" ></i></a>
 
-                          <a href="{{ url('comment!delete', {'id': comment.id,'article_id':article.id}) }}" class="text-sm " title="Supprimer"><i class="fas fa-trash text-red-500"></i></a>
+                          <a href="{{ url('comment!delete', {'id': comment.id,'article_id':article.id}) }}" class="text-sm " title="Supprimer" onclick="if(window.confirm('Voulez-vous vraiment supprimer ?')){return true;}else{return false;}"><i class="fas fa-trash text-red-500"></i></a>
                       {% endif%}
                     {% endif %} 
                   </div>

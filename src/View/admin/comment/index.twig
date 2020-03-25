@@ -22,7 +22,7 @@
                     <th></th>
                 </tr>
             
-                {% for allComment in allComments %}
+                {% for allComment in allComments|sort|reverse %}
                     
                     {% if loop.index  is odd %}
                          <tr class="border-b hover:bg-green-100">
@@ -41,7 +41,7 @@
 
 
                             {% if allComment.publish == '0' %}
-                                {% if allComment.user_id == session.user.id or session.user.role == 'admin'  %}
+                                {% if  session.user.role == 'admin'  %}
                                     <a href="{{ url('comment!updateStatut',{'id': allComment.id,'publish': 1}) }}" class=" text-sm text-gray-600 py-1 px-2 " title="Valider ce commentaire" >
                                         <i class="far fa-eye"></i>
                                     </a>
@@ -50,7 +50,7 @@
                             {% else %}
                                 <i class="far fa-eye text-sm text-gray-600 py-1 px-2  text-blue-600"></i>
                                 
-                                {% if allComment.user_id == session.user.id or session.user.role == 'admin'  %}
+                                {% if  session.user.role == 'admin'  %}
                                     <a href="{{ url('comment!updateStatut',{'id': allComment.id,'publish': 0}) }}" class=" text-sm text-gray-600 py-1 px-2 " title="Rendre priver ce commentaire" >
                                         <i class="far fa-eye-slash "></i>
                                     </a>
