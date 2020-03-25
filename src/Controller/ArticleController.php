@@ -57,6 +57,7 @@ class ArticleController extends Controller
         if ($this->session->islogged()) {
             if (!empty($this->post)) {
                 $data['title']        = $this->post['title'];
+                $data['lead']      = $this->post['lead'];
                 $data['content']      = $this->post['content'];
                 $data['createdAt']    = $this->post['date'];
                 $data['updatedAt']    = $this->post['date'];
@@ -66,7 +67,7 @@ class ArticleController extends Controller
                 ModelFactory::getModel('Article')->createData($data);
                 $this->cookie->createAlert('Nouvel article créé avec succès !');
 
-                $this->redirect('article!index');
+                $this->redirect('article!create');
             }
             return $this->render('admin/blog/create.twig');
         }

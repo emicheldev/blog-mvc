@@ -23,7 +23,7 @@
                     <th></th>
                 </tr>
             
-                {% for allArticle in allArticles %}
+                {% for allArticle in allArticles|sort|reverse %}
                     
                     {% if loop.index  is odd %}
                          <tr class="border-b hover:bg-orange-100">

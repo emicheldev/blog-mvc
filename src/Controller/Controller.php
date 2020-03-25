@@ -62,7 +62,7 @@ abstract class Controller extends SuperGlobalsController
     public function redirect(string $page, array $params = [])
     {
         header('Location: ' . $this->url($page, $params));
-        exit;
+        exit(1);
     }
 
     /**
