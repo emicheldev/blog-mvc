@@ -30,7 +30,7 @@
     "require": {
       "php": "7.2",
       "twig/twig": "^2.12.5",
-        "vlucas/phpdotenv": "^4.1",
+        "vlucas/phpdotenv": "^5.3",
         "zendframework/zend-diactoros": "^2.2",
         "tracy/tracy": "^2.7",
         "phpmailer/phpmailer": "^6.1",
